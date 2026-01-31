@@ -10,6 +10,6 @@ sleep 5
 endtime=$(date +%s)
 echo "Script ended at: $endtime"
 
-totaltime=(($endtime - $starttime))
+totaltime=(($endtime-$starttime))
 echo "Script executed in: $totaltime" 
 
