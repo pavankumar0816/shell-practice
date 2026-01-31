@@ -12,5 +12,5 @@ echo "PID of this script: $$"
 sleep 100 & # putting the sleep command in background
 echo "PID of recently executed background process: $!"
 echo "All args passed to script: $*"
-echo "Exit status of last executed command: $?"
+echo "Exit status of last executed command: $?" #0 → success,non-zero → failure
 
