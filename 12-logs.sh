@@ -12,7 +12,7 @@ fi
 mkdir -p $LOGS_FOLDER
 
 validate(){
-   if( $1 != 0 ); then
+   if [ $1 -ne 0 ]; then
         echo "$2 is failure"
         exit 1
     else
