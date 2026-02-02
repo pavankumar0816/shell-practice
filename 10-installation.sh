@@ -10,6 +10,7 @@ fi
 echo "Installing Nginx web server"
 dnf install nginx -y
 
+
 if [ $? -ne 0 ]; then
     echo "Installig Nginx is failuer"
     exit 1
