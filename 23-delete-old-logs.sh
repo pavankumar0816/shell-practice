@@ -18,5 +18,5 @@ echo "FILES: $FILES_TO_DELETE"
 
 while IFS= read -r filepath; do
 # Process each line here
-echo "$filepath"
+echo "VAR: $filepath"
 done <<< $FILES_TO_DELETE
