@@ -45,7 +45,6 @@ fi
 
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
 
-echo "FILES: $FILES"
 log "Backup Started"
 log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
@@ -56,7 +55,7 @@ if [ -z "{$FILES}" ]; then
     else
         # app-logs-timestamp.tar.gz
         log "Files found to Archive: $FILES"
-        TIMESTAMP=$(date +%F:%H-%M-%S)
+        TIMESTAMP=$(date +%F-%H-%M-%S)
         ZIP_FILE_NAME=$DEST_DIR/app-logs-$TIMESTAMP.tar.gz
         echo "Archieve name: $ZIP_FILE_NAME"
         tar -zcvf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS) 
