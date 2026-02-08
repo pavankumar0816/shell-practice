@@ -49,3 +49,7 @@ log "Backup Started"
 log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
 log "Days: $DAYS"
+
+if [ -z $FILES ]; then
+ log "No files to Archive $Y SKIPPING $N"
+fi
