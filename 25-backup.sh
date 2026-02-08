@@ -52,9 +52,9 @@ log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
 log "Days: $DAYS"
 
-if [ -z "{$FILES}" ]; then
+if [ -z "${FILES}" ]; then
     log "No files to Archive $Y SKIPPING $N"
-    else
+else
         # app-logs-timestamp.tar.gz
         log "Files found to Archive: $FILES"
         TIMESTAMP=$(date +%F-%H-%M-%S)
