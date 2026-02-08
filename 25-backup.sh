@@ -11,33 +11,35 @@ SOURCE_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14} # 14 days is the default value, if the user not supplied
 
+log(){
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOGS_FILE
+}
+
 if [ $userid -ne 0 ]; then
-   echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
+    -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
    exit 1
 fi
 
 mkdir -p $LOGS_FOLDER
 
 USAGE(){
-    echo -e "$R USAGE:: sudo backup <source_DIR> <DEST_DIR> <DAYS>[default 14 days] $N"
+    log -e "$R USAGE:: sudo backup <source_DIR> <DEST_DIR> <DAYS>[default 14 days] $N"
     exit 1
 }
 
-log(){
-    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOGS_FILE
-}
+ 
 
 if [ $# -lt 2 ]; then
    USAGE
 fi
 
 if [ ! -d $SOURCE_DIR ]; then
-   echo -e "$Y Source Directory: $SOURCE_DIR Doest not exist $N"
+   log -e "$Y Source Directory: $SOURCE_DIR Doest not exist $N"
    exit 1
 fi
 
 if [ ! -d $DEST_DIR ]; then
-   echo -e "$Y Destination Directory: $DEST_DIR Does not exist $N"
+   log -e "$Y Destination Directory: $DEST_DIR Does not exist $N"
    exit 1
 fi
 
@@ -57,7 +59,7 @@ if [ -z "{$FILES}" ]; then
         log "Files found to Archive: $FILES"
         TIMESTAMP=$(date +%F-%H-%M-%S)
         ZIP_FILE_NAME=$DEST_DIR/app-logs-$TIMESTAMP.tar.gz
-        echo "Archieve name: $ZIP_FILE_NAME"
+        log "Archieve name: $ZIP_FILE_NAME"
         tar -zcvf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS) 
 
         # Check archieve success or not
@@ -66,9 +68,9 @@ if [ -z "{$FILES}" ]; then
 
             while IFS= read -r filepath; do
             # Process each line here
-            echo "Deleting File: $filepath"
+            log "Deleting File: $filepath"
             rm -f $filepath
-            echo "Deleted file: $filepath"
+            log "Deleted file: $filepath"
             done <<< $FILES
         else
             log "Archeival is ... $R FAILURE $N"
