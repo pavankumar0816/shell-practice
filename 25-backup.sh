@@ -28,12 +28,12 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ ! -d $SOURCE_DIR ]; then
-   echo -e "$Y Source Directory Doest not exist $N"
+   echo -e "$Y Source Directory: $SOURCE_DIR Doest not exist $N"
    exit 1
 fi
 
 if [ ! -d $DEST_DIR ]; then
-   echo -e "$Y Destination Directory Does not exist $N"
+   echo -e "$Y Destination Directory: $DEST_DIR Does not exist $N"
    exit 1
 fi
 
