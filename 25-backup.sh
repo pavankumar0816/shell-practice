@@ -44,7 +44,7 @@ fi
 ## FInd the files
 
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
-echo "$FILES"
+echo "FILES: $FILES"
 log "Backup Started"
 log "Source Directory: $SOURCE_DIR"
 log "Destination Directory: $DEST_DIR"
